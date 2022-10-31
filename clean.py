@@ -3,6 +3,12 @@ import re
 import tqdm
 from nltk.stem import SnowballStemmer
 from nltk.corpus import stopwords
+import nltk
+
+
+
+nltk.download('stopwords')
+
 
 
 stemmer = SnowballStemmer('russian')

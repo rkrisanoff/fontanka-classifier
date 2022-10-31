@@ -27,9 +27,8 @@ def main():
             continue
 
         tree = html.fromstring(response.content)
-
-        links = tree.xpath('//div[contains(@class, \'calendar-item-title\')]/a/@href')
-
+        links = tree.xpath('//div[contains(@class, "JRajd")]/div/a/@href')
+    
         for link in links:
             if link.startswith('/') or 'www.fontanka.ru' in link:
                 link = urllib.parse.urljoin('http://www.fontanka.ru/', link)
@@ -37,7 +36,7 @@ def main():
             else:
                 print('Warning: {} link is external, skipping'.format(link), file=sys.stderr)
 
-        print('{:%Y-%m-%d} done, total lnks: {}'.format(date_cursor, len(all_links)))
+        print('{:%Y-%m-%d} done, total links: {}'.format(date_cursor, len(all_links)))
         date_cursor += dt
 
     with open('./data/links.txt', 'w') as f:
