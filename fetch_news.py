@@ -34,9 +34,9 @@ def fetch_news_page(url):
         return
 
     tree = html.fromstring(response.content)
-    title = ' '.join(tree.xpath('//h1[contains(@class, \'BZat\')]//text()'))
-    content = '\n'.join(tree.xpath('//div[contains(@class, \'BDhf\')]//text()'))
-    category = ' '.join(tree.xpath('//div[contains(@class, \'BZmx\')]//text()'))
+    title = ' '.join(tree.xpath('//h1[contains(@class, \'DVat\')]//text()'))
+    content = "\n".join([p.text_content() for p in tree.xpath('//div[contains(@class, \'EPa9\')]/p')])
+    category = ' '.join(tree.xpath('//div[contains(@class, \'DVrh\')]//text()'))
 
     title = title.strip()
     content = content.strip()
@@ -58,6 +58,7 @@ def fetch_news_page(url):
     category = normalize_line(category)
 
     return url, title, category, content
+
 
 
 def main():
