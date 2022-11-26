@@ -23,9 +23,9 @@ def main():
             continue
 
         tree = html.fromstring(response.content)
-        links = tree.xpath('//div[contains(@class, "CPop")]/div/a[contains(@class,"EHgf")=false]/@href')
+        links = tree.xpath('//div[@id=\'app\']/div/div/div/div/section/div/div/div/li/div/div/a[1]/@href')
 
-        for link in links:
+        for index,link in enumerate(links):
             if link.startswith('/') or 'www.fontanka.ru' in link:
                 link = urllib.parse.urljoin('http://www.fontanka.ru/', link)
                 all_links.append(link)
